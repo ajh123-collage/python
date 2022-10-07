@@ -7,7 +7,7 @@ while not_correct:                               # Continue code until not_corre
     user: int = None                             # Set user to None so the loop below starts
     while user is None:                          # The user will not be None once the user has entered a valid number
         try:                                     # Catch user errors that happen bellow
-            user = int(input("Eneter number "))  # Enter a number and cast to an int
+            user = int(input("Enter number "))   # Enter a number and cast to an int
         except ValueError:                       # A ValueError would be produced if the user did not eneter a number
             print("Please enter a valid number") # Return an error if the user did not input a number
     if user == num:                              # If the user enters the correct number
