@@ -2,6 +2,22 @@ import database
 import validation
 
 
+def make_order():
+    valid_customer = False
+    while not valid_customer:
+        customer_id = validation.vallidate_input("Enter customer ID\n", int)
+        if database.get_customer(customer_id) is not None:
+            valid_customer = True
+            break
+        print("Invalid customer id")
+    quantity = validation.vallidate_input("Enter quantity\n", int)
+    size = input("Enter size\n")
+    toppings = validation.vallidate_input("Enter number of extra toppings [\"1\", \"2\", \"3\", \"4\"]\n", ["1", "2", "3", "4"])
+    delivery = validation.vallidate_input("Delivery requested\n", bool)
+    total_cost = input("Enter total cost\n")
+    return customer_id, quantity, size, toppings, delivery, total_cost
+
+
 def main():
     running = True
 
@@ -22,13 +38,7 @@ def main():
             customers = database.get_customers()
             print(customers)
         elif value == "3":
-            customer_id = validation.vallidate_input("Enter customer ID\n", int)
-            quantity = validation.vallidate_input("Enter quantity\n", int)
-            size = input("Enter size\n")
-            toppings = input("Enter toppings\n")
-            delivery = validation.vallidate_input("Delivery requested\n", bool)
-            total_cost = input("Enter total cost\n")
-            database.add_order(customer_id, quantity, size, toppings, delivery, total_cost)
+            database.add_order(*make_order())
         elif value == "4":
             orders = database.get_orders()
             print(orders)
