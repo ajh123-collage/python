@@ -1,4 +1,7 @@
-def vallidate_input(msg: str, obj: type):
+from typing import Any
+
+
+def vallidate_input(msg: str, obj: type) -> Any:
     ok = False
     out = None
     while not ok:
@@ -14,9 +17,10 @@ def vallidate_input(msg: str, obj: type):
                     ok = True
                 else:
                     out = True
-            elif obj == list:
+                    ok = True
+            elif isinstance(obj, list):
                 if raw in obj:
-                    out = True
+                    out = raw
                     ok = True
                 else:
                     out = False
@@ -26,6 +30,14 @@ def vallidate_input(msg: str, obj: type):
         except ValueError:
             pass
     return out
+
+
+def validate_range(msg: str, minVal: int, maxVal: int) -> int:
+    val = vallidate_input(msg, int)
+    if val >= minVal and val <= maxVal:
+        return val
+    else:
+        return validate_range(msg, minVal, maxVal)
 
 
 if __name__ == "__main__":

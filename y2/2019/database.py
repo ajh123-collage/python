@@ -28,6 +28,7 @@ def add_customer(name: str, address: str, phone: str) -> None:
         INSERT INTO customers (name, address, phone) VALUES
             ('{name}', '{address}', '{phone}')
     """)
+    con.commit()
 
 def get_customer(id: int):
     cur = con.cursor()
@@ -40,9 +41,10 @@ def get_customers():
 def add_order(customer_id: int, quantity: int, size: str, toppings: str, delivery: bool, total_cost: str) -> None:
     cur = con.cursor()
     cur.execute(f"""
-        INSERT INTO customers (customer_id, quantity, size, toppings, delivery, total_cost) VALUES
+        INSERT INTO orders (customer_id, quantity, size, toppings, delivery, total_cost) VALUES
             ('{customer_id}', '{quantity}', '{size}', '{toppings}', '{delivery}', '{total_cost}')
     """)
+    con.commit()
 
 def get_order(id: int):
     cur = con.cursor()
