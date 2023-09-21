@@ -7,13 +7,22 @@
 		},
 		{
 			"include": "#strings"
+		},
+		{
+			"include": "#numbers"
 		}
 	],
 	"repository": {
 		"keywords": {
 			"patterns": [{
 				"name": "keyword.control.pseudocode",
-				"match": "\\b(START|END|INPUT|OUTPUT|SET|TO|IF|THEN|ELSE|END-IF|WHILE|END-WHILE|REPEAT|UNTIL)\\b"
+				"match": "\\b(START|INPUT|OUTPUT|SET|TO|IF|IS|LESS-THAN|GREATER-THAN|EQUAL-TO|THEN|ELSE|END-IF|WHILE|END-WHILE|REPEAT|UNTIL)\\b"
+			}]
+		},
+		"numbers": {
+			"patterns": [{
+				"name": "numbers.control.pseudocode",
+				"match": "\\b([0-9]+)\\b"
 			}]
 		},
 		"strings": {
