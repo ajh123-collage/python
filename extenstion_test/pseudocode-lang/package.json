@@ -1,0 +1,25 @@
+{
+  "name": "pseudocode-lang",
+  "displayName": "Pseudocode Lang",
+  "description": "Simple pseudocode support",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.82.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [{
+      "id": "pseudocode",
+      "aliases": ["Pseudocode", "pseudocode"],
+      "extensions": ["ps","pseudocode","psc"],
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "pseudocode",
+      "scopeName": "source.psc",
+      "path": "./syntaxes/pseudocode.tmLanguage.json"
+    }]
+  }
+}
