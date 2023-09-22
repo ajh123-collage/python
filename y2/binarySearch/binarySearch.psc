@@ -1,5 +1,5 @@
 START
-  FUNCTION binary_search(arr, low, high, x))
+  FUNCTION binary_search(arr, low, high, x)
     IF high IS GREATER THAN low THEN
       SET mid TO (high + low) / 2
       IF arr[mid] IS x THEN
