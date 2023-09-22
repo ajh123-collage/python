@@ -4,9 +4,9 @@ START
       SET mid TO (high + low) / 2
       IF arr[mid] IS x THEN
         RETURN mid
-      ELSE-IF arr[mid] > x THEN
+      ELSE-IF arr[mid] IS GREATER THAN x THEN
         RETURN binary_search(arr, low, mid-1, x)
-      ELSE arr[mid] > x THEN
+      ELSE
         RETURN binary_search(arr, low, mid+1, x)
       END-IF
     ELSE:
