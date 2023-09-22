@@ -16,13 +16,13 @@
 		"keywords": {
 			"patterns": [{
 				"name": "keyword.control.pseudocode",
-				"match": "\\b(START|INPUT|OUTPUT|SET|TO|IF|IS|LESS-THAN|GREATER-THAN|EQUAL-TO|THEN|ELSE|END-IF|WHILE|END-WHILE|REPEAT|UNTIL)\\b"
+				"match": "\\b(START|INPUT|OUTPUT|SET|TO|IF|IS|LESS-THAN|GREATER-THAN|EQUAL-TO|THEN|ELSE|END-IF|END|WHILE|END-WHILE|REPEAT|UNTIL)\\b"
 			}]
 		},
 		"numbers": {
 			"patterns": [{
 				"name": "numbers.control.pseudocode",
-				"match": "\\b([0-9]+)\\b"
+				"match": "\\b(0-9)\\b"
 			}]
 		},
 		"strings": {
