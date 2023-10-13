@@ -1,13 +1,10 @@
 stock = {}
-isLoggedIn = False
 
 def login():
-    global isLoggedIn
     username = input("Enter username >\n")
     password = input("Enter password >\n")
     if username == "bob":
         if password == "qwerty123":
-            isLoggedIn = True
             menu()
             return
 
@@ -15,7 +12,7 @@ def login():
 
 
 def menu():
-    global isLoggedIn
+    isLoggedIn = True
     while isLoggedIn:
         print("1. Add new item")
         print("2. Add stock")
