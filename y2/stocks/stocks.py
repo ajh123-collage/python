@@ -81,7 +81,7 @@ def removeStock():
         removeStock()
 
 def listStock():
-    for item in stock:
-        print(stock[item]["amount"], item, f"£{stock[item]['amount']} each", f"£{stock[item]['amount']*stock[item]['price']} total")
+    for name, item in stock.items():
+        print(item["amount"], name, f"£{item['amount']} each", f"£{item['amount']*item['price']} total")
 
 login()
