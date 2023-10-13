@@ -1,10 +1,13 @@
 stock = {}
+isLoggedIn = False
 
 def login():
+    global isLoggedIn
     username = input("Enter username >\n")
     password = input("Enter password >\n")
     if username == "bob":
         if password == "qwerty123":
+            isLoggedIn = True
             menu()
             return
 
@@ -12,56 +15,73 @@ def login():
 
 
 def menu():
-    print("1. Set stock")
-    print("2. Add stock")
-    print("3. Remove stock")
-    print("4. Exit")
-    choice = input("Enter choice >\n")
-    if choice == 1:
-        setStock()
-    elif choice == 2:
-        addStock()
-    elif choice == 3:
-        removeStock()
-    elif choice == 4:
-        return
+    global isLoggedIn
+    while isLoggedIn:
+        print("1. Add new item")
+        print("2. Add stock")
+        print("3. Remove stock")
+        print("4. List stock")
+        print("5. Exit")
+        choice = input("Enter choice >\n")
+        if choice == "1":
+            setStock()
+        elif choice == "2":
+            addStock()
+        elif choice == "3":
+            removeStock()
+        elif choice == "4":
+            listStock()
+        elif choice == "5":
+            isLoggedIn = False
+            return
 
 
 def setStock():
     itemName = input("Enter item name >\n")
     itemAmount = input("Enter amount >\n")
-    if itemAmount < 1:
+    itemPrice = input("Enter price >\n")
+    if int(itemAmount) < 1:
         print("Amount cannot be less than 1")
         setStock()
     else:
-        stock[itemName] = int(itemAmount)
+        stock[itemName] = {
+            "amount": int(itemAmount),
+            "price": float(itemPrice)
+        }
         print("Item added")
 
 
 def addStock():
     itemName = input("Enter item name >\n")
-    itemAmount = input("Enter amount >\n")
 
-    if stock[itemName] is None:
+    if itemName not in stock:
         print("Item does not exist")
         addStock()
     else:
-        realAmount = stock[itemName]
-        stock[itemName] = realAmount + int(itemAmount)
+        itemAmount = input("Enter amount >\n")
+        realAmount = stock[itemName]["amount"]
+        stock[itemName]["amount"] = realAmount + int(itemAmount)
         print("Item(s) Added")
 
 
 def removeStock():
     itemName = input("Enter item name >\n")
-    itemAmount = input("Enter amount >\n")
 
-    if stock[itemName] < itemAmount:
-        realAmount = stock[itemName]
-        stock[itemName] = realAmount - int(itemAmount)
-        print("Item(s) removed")
+    if itemName in stock:
+        itemAmount = input("Enter amount >\n")
+        if stock[itemName]["amount"] > int(itemAmount):
+            realAmount = stock[itemName]["amount"]
+            stock[itemName]["amount"] = realAmount - int(itemAmount)
+            print("Item(s) removed")
+        else:
+            print("Not enougth items")
+            removeStock()
     else:
-        print("Not enougth items")
+        print("Item does not exist")
         removeStock()
 
+def listStock():
+    for item in stock:
+        print(stock[item]["amount"], item, f"£{stock[item]['amount']} each", f"£{stock[item]['amount']*stock[item]['price']} total")
 
 login()
