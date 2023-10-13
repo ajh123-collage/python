@@ -24,7 +24,7 @@ START
         ELSE-IF choice EQUAL TO 2 THEN
             addStock()
         ELSE-IF choice EQUAL TO 3 THEN
-            remove()
+            removeStock()
         ELSE-IF choice EQUAL TO 4 THEN
             RETURN
         END-IF
