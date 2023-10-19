@@ -20,25 +20,70 @@ You must create a flowchart and pseudocode for the above solution. Ensure your d
 
 ## Flowchart
 
+<!-- %%{ init : {"flowchart" : { "curve" : "linear" }}}%%
+%%     -->
 ```mermaid
 flowchart TD
 
 1(Start) --> 2["SET loggedIn TO
-False"]
-2--> 3{"IS loggedIn 
-EQUAL TO
-True?"}
-3 --> |No| 4[/INPUT username/]
-3 --> |Yes| 50000000[Result 2]
-4 --> 5[/INPUT password/] --> 6{"IS username
-EQUAL TO
-bob?"}
-6 --> |No| 3
-6 --> |Yes| 7{"IS password
-EQUAL TO
-qwerty123?"}
-7 --> |No| 3
-7 --> |Yes| 8["SET loggedIn TO true"] --> 3
+False"] --> 3["CREATE stock AS dictionary"] --> 4
+subgraph Login
+    4{"IS loggedIn 
+    EQUAL TO
+    True?"}
+    4 --> |No| 5[/INPUT username/]
+    5 --> 6[/INPUT password/] --> 7{"IS username
+    EQUAL TO
+    bob?"}
+    7 --> |No| 4
+    7 --> |Yes| 8{"IS password
+    EQUAL TO
+    qwerty123?"}
+    8 --> |No| 4
+    8 --> |Yes| 9["SET loggedIn TO true"] --> 4
+end
+
+subgraph Menu
+    4 --> |Yes| 10
+    10[/"OUTPUT #quot;1. Set Stock#quot;"/] --> 11[/"OUTPUT #quot;2. Add Stock#quot;"/] --> 12[/"OUTPUT #quot;3. Remove Stock#quot;"/] --> 13[/"OUTPUT #quot;4. Exit#quot;"/]
+    13 --> 14[/INPUT choice/] 
+    14 --> 15{"IS choice
+    EQUAL TO
+    1"}
+    15 --> |No| 16{"IS choice
+    EQUAL TO
+    2"}
+    16 --> |No| 17{"IS choice
+    EQUAL TO
+    3"}
+    17 --> |No| 18{"IS choice
+    EQUAL TO
+    4"}
+    18 --> |No| 10
+end
+
+subgraph SetStock
+    15 --> |Yes| 19
+    19[/"INPUT itemName"/] --> 20[/"INPUT itemAmount"/]
+    20 --> 21["SET[itemName] TO itemAmount"]
+    21 --> 22[/"OUTPUT #quot;Item Added#quot;"/]
+    22 --> 10
+end
+
+subgraph AddStock
+    16 --> |Yes| 23
+    23[/"INPUT itemName"/] --> 24[/"INPUT itemAmount"/]
+    24 --> 25["SET[itemName] TO itemAmount"]
+    25 --> 26{"IS
+    stock[ItemName]
+    EMPTY"}
+    26 --> |Yes| 27[/"OUTPUT #quot;Item does not exist#quot;"/]
+    27 --> 23
+end
+
+subgraph RemoveStock
+
+end
 ```
 
 ## Pseudocode
